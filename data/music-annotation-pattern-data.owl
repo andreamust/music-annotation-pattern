@@ -692,6 +692,114 @@
         <rdfs:comment xml:lang="en">A observation defined on a symbolic notation or on a music score, i.e. described from a temporal point of view using references to symbolic elements defined by the notation itself.</rdfs:comment>
         <rdfs:label xml:lang="en">JAMS Score Observation</rdfs:label>
     </owl:Class>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Individuals
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- https://example.org/BohemianRhapsodyAudioAnnotation -->
+
+    <owl:NamedIndividual rdf:about="https://example.org/BohemianRhapsodyAudioAnnotation">
+        <rdf:type rdf:resource="http://purl.org/andreapoltronieri/music-annotation-pattern/AudioAnnotation"/>
+        <hasAnnotator rdf:resource="https://example.org/MatthiasMauch"/>
+        <includesObservation rdf:resource="https://example.org/ChordObservation1"/>
+        <includesObservation rdf:resource="https://example.org/ChordObservation2"/>
+        <includesObservation rdf:resource="https://example.org/ChordObservation3"/>
+        <hasValdityStartingTime rdf:datatype="http://www.w3.org/2001/XMLSchema#float">0.0</hasValdityStartingTime>
+        <hasValidityDuration rdf:datatype="http://www.w3.org/2001/XMLSchema#float">358.293</hasValidityDuration>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://example.org/ChordObservation1 -->
+
+    <owl:NamedIndividual rdf:about="https://example.org/ChordObservation1">
+        <rdf:type rdf:resource="http://purl.org/andreapoltronieri/music-annotation-pattern/AudioObservation"/>
+        <hasValue rdf:resource="https://example.org/ChordValue-N"/>
+        <isObservationOf rdf:resource="https://example.org/BohemianRhapsodyAudioAnnotation"/>
+        <hasDurartion rdf:datatype="http://www.w3.org/2001/XMLSchema#float">0.459</hasDurartion>
+        <startsAtTime rdf:datatype="http://www.w3.org/2001/XMLSchema#float">0.0</startsAtTime>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://example.org/ChordObservation2 -->
+
+    <owl:NamedIndividual rdf:about="https://example.org/ChordObservation2">
+        <rdf:type rdf:resource="http://purl.org/andreapoltronieri/music-annotation-pattern/AudioObservation"/>
+        <hasValue rdf:resource="https://example.org/ChordValue-B:maj6"/>
+        <isObservationOf rdf:resource="https://example.org/BohemianRhapsodyAudioAnnotation"/>
+        <hasDurartion rdf:datatype="http://www.w3.org/2001/XMLSchema#float">3.663</hasDurartion>
+        <startsAtTime rdf:datatype="http://www.w3.org/2001/XMLSchema#float">0.459</startsAtTime>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://example.org/ChordObservation3 -->
+
+    <owl:NamedIndividual rdf:about="https://example.org/ChordObservation3">
+        <rdf:type rdf:resource="http://purl.org/andreapoltronieri/music-annotation-pattern/AudioObservation"/>
+        <hasValue rdf:resource="https://example.org/ChordValue-C:7"/>
+        <isObservationOf rdf:resource="https://example.org/BohemianRhapsodyAudioAnnotation"/>
+        <hasDurartion rdf:datatype="http://www.w3.org/2001/XMLSchema#float">0.789</hasDurartion>
+        <startsAtTime rdf:datatype="http://www.w3.org/2001/XMLSchema#float">4.112</startsAtTime>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://example.org/ChordValue-N -->
+
+    <owl:NamedIndividual rdf:about="https://example.org/ChordValue-N">
+        <rdf:type rdf:resource="http://purl.org/andreapoltronieri/music-annotation-pattern/ObservationValue"/>
+        <isValueOf rdf:resource="https://example.org/ChordObservation1"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://example.org/Human -->
+
+    <owl:NamedIndividual rdf:about="https://example.org/Human">
+        <rdf:type rdf:resource="http://purl.org/andreapoltronieri/music-annotation-pattern/AnnotatorType"/>
+        <isAnnotatorTypeOf rdf:resource="https://example.org/MatthiasMauch"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://example.org/MatthiasMauch -->
+
+    <owl:NamedIndividual rdf:about="https://example.org/MatthiasMauch">
+        <rdf:type rdf:resource="http://purl.org/andreapoltronieri/music-annotation-pattern/Annotator"/>
+        <hasAnnotatorType rdf:resource="https://example.org/Human"/>
+        <isAnnotatorOf rdf:resource="https://example.org/BohemianRhapsodyAudioAnnotation"/>
+        <hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Matthias Mauch</hasName>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://example.org/ChordValue-B:maj6 -->
+
+    <owl:NamedIndividual rdf:about="https://example.org/ChordValue-B:maj6">
+        <rdf:type rdf:resource="http://purl.org/andreapoltronieri/music-annotation-pattern/ObservationValue"/>
+        <isValueOf rdf:resource="https://example.org/ChordObservation2"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://example.org/ChordValue-C:7 -->
+
+    <owl:NamedIndividual rdf:about="https://example.org/ChordValue-C:7">
+        <rdf:type rdf:resource="http://purl.org/andreapoltronieri/music-annotation-pattern/ObservationValue"/>
+        <isValueOf rdf:resource="https://example.org/ChordObservation3"/>
+    </owl:NamedIndividual>
 </rdf:RDF>
 
 

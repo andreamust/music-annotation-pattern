@@ -1,0 +1,509 @@
+@prefix : <http://purl.org/andreapoltronieri/music-annotation-pattern/> .
+@prefix dc: <http://purl.org/dc/elements/1.1/> .
+@prefix ex: <https://example.org/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix terms: <http://purl.org/dc/terms/> .
+@base <http://purl.org/andreapoltronieri/music-annotation-pattern/> .
+
+<http://purl.org/andreapoltronieri/music-annotation-pattern/> rdf:type owl:Ontology ;
+                                                               owl:versionIRI <http://purl.org/andreapoltronieri/music-annotation-pattern/0.1/> ;
+                                                               dc:creator "Andrea Poltronieri"@en ,
+                                                                          "Jacopo de Berardinis"@en ,
+                                                                          "Valentina Presutti"@en ;
+                                                               dc:license <https://creativecommons.org/licenses/by-sa/4.0/> ;
+                                                               terms:license <https://creativecommons.org/licenses/by-sa/4.0/> ;
+                                                               rdfs:comment "An Ontology Design Pattern (ODP) for modelling differnt types of musical annotation"@en ;
+                                                               rdfs:label "Music Annotation Pattern"@en ;
+                                                               owl:versionInfo "1.0"@en .
+
+#################################################################
+#    Annotation properties
+#################################################################
+
+###  http://purl.org/dc/elements/1.1/creator
+dc:creator rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/elements/1.1/license
+dc:license rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/elements/1.1/title
+dc:title rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/terms/license
+terms:license rdf:type owl:AnnotationProperty .
+
+
+#################################################################
+#    Object Properties
+#################################################################
+
+###  http://purl.org/andreapoltronieri/music-annotation-pattern/annotationValidFrom
+:annotationValidFrom rdf:type owl:ObjectProperty ;
+                     owl:inverseOf :isMetricalTimeOf ;
+                     rdf:type owl:FunctionalProperty ;
+                     rdfs:range :MetricalTime ;
+                     owl:propertyDisjointWith :hasAnnotator ,
+                                              :hasAnnotatorType ,
+                                              :hasJAMSAnnotation ,
+                                              :includesObservation ,
+                                              :isAnnotationOf ,
+                                              :isAnnotatorOf ,
+                                              :isAnnotatorTypeOf ,
+                                              :isMetricalTimeOf ,
+                                              :isObservationOf ;
+                     rdfs:comment "Relates a JAMS Score Annotation to its metrical information, expressed by the MetricalTime class."@en ;
+                     rdfs:label "Annotation Valid From"@en .
+
+
+###  http://purl.org/andreapoltronieri/music-annotation-pattern/hasAnnotator
+:hasAnnotator rdf:type owl:ObjectProperty ;
+              owl:inverseOf :isAnnotatorOf ;
+              rdfs:domain :Annotation ;
+              rdfs:range :Annotator ;
+              owl:propertyDisjointWith :hasAnnotatorType ,
+                                       :hasJAMSAnnotation ,
+                                       :includesObservation ,
+                                       :isAnnotationOf ,
+                                       :isAnnotatorOf ,
+                                       :isAnnotatorTypeOf ,
+                                       :isMetricalTimeOf ,
+                                       :isObservationOf ;
+              rdfs:comment "Links a JAMS annotation to the Annotator the annotated the JAMS."@en ;
+              rdfs:label "Has Annotator"@en .
+
+
+###  http://purl.org/andreapoltronieri/music-annotation-pattern/hasAnnotatorType
+:hasAnnotatorType rdf:type owl:ObjectProperty ;
+                  owl:inverseOf :isAnnotatorTypeOf ;
+                  rdfs:domain :Annotator ;
+                  rdfs:range :AnnotatorType ;
+                  owl:propertyDisjointWith :hasJAMSAnnotation ,
+                                           :includesObservation ,
+                                           :isAnnotationOf ,
+                                           :isAnnotatorOf ,
+                                           :isAnnotatorTypeOf ,
+                                           :isMetricalTimeOf ,
+                                           :isObservationOf ;
+                  rdfs:comment "Links the Annotator class to its Annotator Type, describing how the JAMS annotations were generated."@en ;
+                  rdfs:label "Has Annotator Type"@en .
+
+
+###  http://purl.org/andreapoltronieri/music-annotation-pattern/hasJAMSAnnotation
+:hasJAMSAnnotation rdf:type owl:ObjectProperty ;
+                   owl:inverseOf :isAnnotationOf ;
+                   rdf:type owl:InverseFunctionalProperty ;
+                   rdfs:range :Annotation ;
+                   owl:propertyDisjointWith :includesObservation ,
+                                            :isAnnotationOf ,
+                                            :isAnnotatorOf ,
+                                            :isAnnotatorTypeOf ,
+                                            :isMetricalTimeOf ,
+                                            :isObservationOf ;
+                   rdfs:comment "Relates a Score or a Recording to the JAMS annotation describing the track."@en ;
+                   rdfs:label "Has JAMS Annotation"@en .
+
+
+###  http://purl.org/andreapoltronieri/music-annotation-pattern/hasValue
+:hasValue rdf:type owl:ObjectProperty ;
+          owl:inverseOf :isValueOf ;
+          rdf:type owl:InverseFunctionalProperty ;
+          rdfs:domain :Observation ;
+          rdfs:range :ObservationValue ;
+          rdfs:label "Has Value"@en .
+
+
+###  http://purl.org/andreapoltronieri/music-annotation-pattern/includesObservation
+:includesObservation rdf:type owl:ObjectProperty ;
+                     owl:inverseOf :isObservationOf ;
+                     rdf:type owl:InverseFunctionalProperty ;
+                     rdfs:domain :Annotation ;
+                     rdfs:range :Observation ;
+                     owl:propertyDisjointWith :isAnnotationOf ,
+                                              :isAnnotatorOf ,
+                                              :isAnnotatorTypeOf ,
+                                              :isMetricalTimeOf ,
+                                              :isObservationOf ;
+                     rdfs:comment "Links a JAMS Annotation to the JAMS Onservation(s) it contains."@en ;
+                     rdfs:label "Includes Observation"@en .
+
+
+###  http://purl.org/andreapoltronieri/music-annotation-pattern/isAnnotationOf
+:isAnnotationOf rdf:type owl:ObjectProperty ,
+                         owl:FunctionalProperty ;
+                rdfs:domain :Annotation ;
+                owl:propertyDisjointWith :isAnnotatorOf ,
+                                         :isAnnotatorTypeOf ,
+                                         :isMetricalTimeOf ,
+                                         :isObservationOf ;
+                rdfs:comment "Inverse of hasJAMSAnnotation. It links the JAMS Annotation to either a Recording o a Score."@en ;
+                rdfs:label "Is JAMS Annotation Of"@en .
+
+
+###  http://purl.org/andreapoltronieri/music-annotation-pattern/isAnnotatorOf
+:isAnnotatorOf rdf:type owl:ObjectProperty ;
+               rdfs:domain :Annotator ;
+               rdfs:range :Annotation ;
+               owl:propertyDisjointWith :isAnnotatorTypeOf ,
+                                        :isMetricalTimeOf ,
+                                        :isObservationOf ;
+               rdfs:comment "Inverse of hasAnnotator. Links the Annotator to the JAMS Annotation annotated by such annotator."@en ;
+               rdfs:label "Is Annotator Of"@en .
+
+
+###  http://purl.org/andreapoltronieri/music-annotation-pattern/isAnnotatorTypeOf
+:isAnnotatorTypeOf rdf:type owl:ObjectProperty ;
+                   rdfs:domain :AnnotatorType ;
+                   rdfs:range :Annotator ;
+                   owl:propertyDisjointWith :isMetricalTimeOf ,
+                                            :isObservationOf ;
+                   rdfs:comment "Inverse of hasAnnotatorType. Links the Annotator Type to the Annotator class."@en ;
+                   rdfs:label "Is Annotator Type Of"@en .
+
+
+###  http://purl.org/andreapoltronieri/music-annotation-pattern/isMetricalTimeOf
+:isMetricalTimeOf rdf:type owl:ObjectProperty ;
+                  rdfs:domain :MetricalTime ;
+                  owl:propertyDisjointWith :isObservationOf ;
+                  rdfs:comment "Inverse of startsAt. It relates the Metrical Time of a JAMS Score Observation, expressing the score observation's timing information."@en ;
+                  rdfs:label "Is Metrical Time Of"@en .
+
+
+###  http://purl.org/andreapoltronieri/music-annotation-pattern/isObservationOf
+:isObservationOf rdf:type owl:ObjectProperty ,
+                          owl:FunctionalProperty ;
+                 rdfs:domain :Observation ;
+                 rdfs:range :Annotation ;
+                 rdfs:comment "Inverse of includesObservation. Links a JAMS Observation to the JAMS Annotation to which it belongs."@en ;
+                 rdfs:label "Is Observation Of"@en .
+
+
+###  http://purl.org/andreapoltronieri/music-annotation-pattern/isValueOf
+:isValueOf rdf:type owl:ObjectProperty ,
+                    owl:FunctionalProperty ;
+           rdfs:domain :ObservationValue ;
+           rdfs:range :Observation ;
+           rdfs:label "Is Value Of"@en .
+
+
+#################################################################
+#    Data properties
+#################################################################
+
+###  http://purl.org/andreapoltronieri/music-annotation-pattern/hasBeat
+:hasBeat rdf:type owl:DatatypeProperty ,
+                  owl:FunctionalProperty ;
+         rdfs:domain :MetricalTime ;
+         rdfs:range xsd:float ;
+         owl:propertyDisjointWith :hasConfidence ,
+                                  :hasDurartion ,
+                                  :hasMeasure ,
+                                  :hasName ,
+                                  :hasValdityStartingTime ,
+                                  :hasValidityDuration ,
+                                  :startsAtTime ;
+         rdfs:comment "The starting beat of an annotation or an observation within a measure."@en ;
+         rdfs:label "Has Beat"@en .
+
+
+###  http://purl.org/andreapoltronieri/music-annotation-pattern/hasConfidence
+:hasConfidence rdf:type owl:DatatypeProperty ,
+                        owl:FunctionalProperty ;
+               rdfs:domain :Observation ;
+               rdfs:range xsd:float ;
+               owl:propertyDisjointWith :hasDurartion ,
+                                        :hasMeasure ,
+                                        :hasName ,
+                                        :hasValdityStartingTime ,
+                                        :hasValidityDuration ,
+                                        :startsAtTime ;
+               rdfs:comment "The confidence of an annotation/observation, as described by the JAMS documentation, hence expressed with a floating number from 0 to 1."@en ;
+               rdfs:label "Has Confidence"@en .
+
+
+###  http://purl.org/andreapoltronieri/music-annotation-pattern/hasDurartion
+:hasDurartion rdf:type owl:DatatypeProperty ,
+                       owl:FunctionalProperty ;
+              rdfs:domain :Observation ;
+              rdfs:range xsd:float ;
+              owl:propertyDisjointWith :hasMeasure ,
+                                       :hasName ,
+                                       :hasValdityStartingTime ,
+                                       :hasValidityDuration ,
+                                       :startsAtTime ;
+              rdfs:comment "The duration of an observation, either expressing real time or symbolic time."@en ;
+              rdfs:label "Has Duration"@en .
+
+
+###  http://purl.org/andreapoltronieri/music-annotation-pattern/hasMeasure
+:hasMeasure rdf:type owl:DatatypeProperty ,
+                     owl:FunctionalProperty ;
+            rdfs:domain :MetricalTime ;
+            rdfs:range xsd:nonNegativeInteger ;
+            owl:propertyDisjointWith :hasName ,
+                                     :hasValdityStartingTime ,
+                                     :hasValidityDuration ,
+                                     :startsAtTime ;
+            rdfs:comment "The measure in which the observation or the annotation takes place."@en ;
+            rdfs:label "Has Measure"@en .
+
+
+###  http://purl.org/andreapoltronieri/music-annotation-pattern/hasName
+:hasName rdf:type owl:DatatypeProperty ;
+         rdfs:domain :Annotator ;
+         rdfs:range xsd:string ;
+         owl:propertyDisjointWith :hasValdityStartingTime ,
+                                  :hasValidityDuration ,
+                                  :startsAtTime ;
+         rdfs:comment "The name of an annotator, which can be either human, artificial (e.g. the name of a software) or describing a group of people (e.g. the name of a crowdsourcing service/event)."@en ;
+         rdfs:label "Has Name"@en .
+
+
+###  http://purl.org/andreapoltronieri/music-annotation-pattern/hasValdityStartingTime
+:hasValdityStartingTime rdf:type owl:DatatypeProperty ,
+                                 owl:FunctionalProperty ;
+                        rdfs:domain :AudioAnnotation ;
+                        rdfs:range xsd:float ;
+                        owl:propertyDisjointWith :hasValidityDuration ,
+                                                 :startsAtTime ;
+                        rdfs:comment "The start time of an Audio Annotation, thus expressed in seconds."@en ;
+                        rdfs:label "Has Validity Starting Time"@en .
+
+
+###  http://purl.org/andreapoltronieri/music-annotation-pattern/hasValidityDuration
+:hasValidityDuration rdf:type owl:DatatypeProperty ,
+                              owl:FunctionalProperty ;
+                     rdfs:domain :Annotation ;
+                     rdfs:range xsd:float ;
+                     owl:propertyDisjointWith :startsAtTime ;
+                     rdfs:comment "The duration of an annotation, whether audio or score."@en ;
+                     rdfs:label "HasValidity Duration"@en .
+
+
+###  http://purl.org/andreapoltronieri/music-annotation-pattern/startsAtTime
+:startsAtTime rdf:type owl:DatatypeProperty ,
+                       owl:FunctionalProperty ;
+              rdfs:domain :AudioObservation ;
+              rdfs:range xsd:float ;
+              rdfs:comment "The start time of an observation belonging to an 'audio' type annotation, and thus expressed in seconds."@en ;
+              rdfs:label "Starts At Time"@en .
+
+
+#################################################################
+#    Classes
+#################################################################
+
+###  http://purl.org/andreapoltronieri/music-annotation-pattern/Annotation
+:Annotation rdf:type owl:Class ;
+            rdfs:subClassOf [ rdf:type owl:Restriction ;
+                              owl:onProperty :hasAnnotator ;
+                              owl:allValuesFrom :Annotator
+                            ] ,
+                            [ rdf:type owl:Restriction ;
+                              owl:onProperty :includesObservation ;
+                              owl:allValuesFrom :Observation
+                            ] ,
+                            [ rdf:type owl:Restriction ;
+                              owl:onProperty :includesObservation ;
+                              owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                              owl:onClass :Observation
+                            ] ,
+                            [ rdf:type owl:Restriction ;
+                              owl:onProperty :hasValidityDuration ;
+                              owl:allValuesFrom xsd:float
+                            ] ,
+                            [ rdf:type owl:Restriction ;
+                              owl:onProperty :hasValidityDuration ;
+                              owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                              owl:onDataRange xsd:float
+                            ] ;
+            owl:disjointWith :Annotator ,
+                             :AnnotatorType ,
+                             :MetricalTime ,
+                             :Observation ,
+                             :ObservationValue ;
+            rdfs:comment "A group of observations that share the same type of annotation (e.g. score or audio) and the same syntax with which the agreement is expressed (e.g. Harte or Roman)."@en ;
+            rdfs:label "JAMS Annotation"@en .
+
+
+###  http://purl.org/andreapoltronieri/music-annotation-pattern/Annotator
+:Annotator rdf:type owl:Class ;
+           rdfs:subClassOf [ rdf:type owl:Restriction ;
+                             owl:onProperty :hasAnnotatorType ;
+                             owl:allValuesFrom :AnnotatorType
+                           ] ,
+                           [ rdf:type owl:Restriction ;
+                             owl:onProperty :hasName ;
+                             owl:allValuesFrom xsd:string
+                           ] ;
+           owl:disjointWith :AnnotatorType ,
+                            :MetricalTime ,
+                            :Observation ;
+           rdfs:comment "The annotator of a JAMS annotation, whether understood as a physical person or as a machine that has performed an automatic transcription."@en ;
+           rdfs:label "Annotator"@en .
+
+
+###  http://purl.org/andreapoltronieri/music-annotation-pattern/AnnotatorType
+:AnnotatorType rdf:type owl:Class ;
+               rdfs:subClassOf [ rdf:type owl:Restriction ;
+                                 owl:onProperty :isAnnotatorOf ;
+                                 owl:allValuesFrom :Annotator
+                               ] ;
+               owl:disjointWith :MetricalTime ,
+                                :Observation ;
+               rdfs:comment "The type of annotator of a JAMS annotation, whether human or the result of an automatic or crowdsourced annotation."@en ;
+               rdfs:label "Annotator Type"@en .
+
+
+###  http://purl.org/andreapoltronieri/music-annotation-pattern/AudioAnnotation
+:AudioAnnotation rdf:type owl:Class ;
+                 rdfs:subClassOf :Annotation ,
+                                 [ rdf:type owl:Restriction ;
+                                   owl:onProperty :includesObservation ;
+                                   owl:allValuesFrom :AudioObservation
+                                 ] ,
+                                 [ rdf:type owl:Restriction ;
+                                   owl:onProperty :includesObservation ;
+                                   owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                   owl:onClass :AudioObservation
+                                 ] ;
+                 rdfs:label "Audio Annotation"@en .
+
+
+###  http://purl.org/andreapoltronieri/music-annotation-pattern/AudioObservation
+:AudioObservation rdf:type owl:Class ;
+                  rdfs:subClassOf :Observation ,
+                                  [ rdf:type owl:Restriction ;
+                                    owl:onProperty :isObservationOf ;
+                                    owl:allValuesFrom :AudioAnnotation
+                                  ] ,
+                                  [ rdf:type owl:Restriction ;
+                                    owl:onProperty :startsAtTime ;
+                                    owl:allValuesFrom xsd:float
+                                  ] ,
+                                  [ rdf:type owl:Restriction ;
+                                    owl:onProperty :startsAtTime ;
+                                    owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                    owl:onDataRange xsd:float
+                                  ] ;
+                  owl:disjointWith :ScoreObservation ;
+                  rdfs:comment "A observation defined on the audio signal, i.e. described from a temporal point of view using real time, usually expressed in seconds."@en ;
+                  rdfs:label "JAMS Audio Observation"@en .
+
+
+###  http://purl.org/andreapoltronieri/music-annotation-pattern/MetricalTime
+:MetricalTime rdf:type owl:Class ;
+              rdfs:subClassOf [ rdf:type owl:Restriction ;
+                                owl:onProperty :hasBeat ;
+                                owl:allValuesFrom xsd:float
+                              ] ,
+                              [ rdf:type owl:Restriction ;
+                                owl:onProperty :hasMeasure ;
+                                owl:allValuesFrom xsd:nonNegativeInteger
+                              ] ,
+                              [ rdf:type owl:Restriction ;
+                                owl:onProperty :hasMeasure ;
+                                owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                owl:onDataRange xsd:nonNegativeInteger
+                              ] ;
+              owl:disjointWith :Observation ,
+                               :ObservationValue ;
+              rdfs:comment "Metric Time, i.e. the time indications defined on the symbolic content. It differs from real time in that it does not contain indications in seconds but refers to an external symbolic system (e.g. score, expressing beats, measures, offsets)."@en ;
+              rdfs:label "Metrical Time"@en .
+
+
+###  http://purl.org/andreapoltronieri/music-annotation-pattern/Observation
+:Observation rdf:type owl:Class ;
+             rdfs:subClassOf [ rdf:type owl:Restriction ;
+                               owl:onProperty :hasValue ;
+                               owl:allValuesFrom :ObservationValue
+                             ] ,
+                             [ rdf:type owl:Restriction ;
+                               owl:onProperty :isObservationOf ;
+                               owl:allValuesFrom :Annotation
+                             ] ,
+                             [ rdf:type owl:Restriction ;
+                               owl:onProperty :hasValue ;
+                               owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                               owl:onClass :ObservationValue
+                             ] ,
+                             [ rdf:type owl:Restriction ;
+                               owl:onProperty :isObservationOf ;
+                               owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                               owl:onClass :Annotation
+                             ] ,
+                             [ rdf:type owl:Restriction ;
+                               owl:onProperty :hasConfidence ;
+                               owl:allValuesFrom xsd:float
+                             ] ,
+                             [ rdf:type owl:Restriction ;
+                               owl:onProperty :hasDurartion ;
+                               owl:allValuesFrom xsd:float
+                             ] ,
+                             [ rdf:type owl:Restriction ;
+                               owl:onProperty :hasConfidence ;
+                               owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                               owl:onDataRange xsd:float
+                             ] ,
+                             [ rdf:type owl:Restriction ;
+                               owl:onProperty :hasDurartion ;
+                               owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                               owl:onDataRange xsd:float
+                             ] ;
+             owl:disjointWith :ObservationValue ;
+             rdfs:comment "An observation of the annotation, understood as an event defined in time (both real and symbolic) that has a value (e.g. a specific agreement) and a precise duration."@en ;
+             rdfs:label "JAMS Observation"@en .
+
+
+###  http://purl.org/andreapoltronieri/music-annotation-pattern/ObservationValue
+:ObservationValue rdf:type owl:Class ;
+                  rdfs:subClassOf [ rdf:type owl:Restriction ;
+                                    owl:onProperty :isValueOf ;
+                                    owl:allValuesFrom :Observation
+                                  ] ,
+                                  [ rdf:type owl:Restriction ;
+                                    owl:onProperty :isValueOf ;
+                                    owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                    owl:onClass :Observation
+                                  ] ;
+                  rdfs:comment "A musical Chord as central element of a JAMS Observation. More generally, a chrod is defined as any harmonic set of pitches consisting of multiple notes that are heard as if sounding simultaneously."@en ;
+                  rdfs:label "Chord"@en .
+
+
+###  http://purl.org/andreapoltronieri/music-annotation-pattern/ScoreAnnotation
+:ScoreAnnotation rdf:type owl:Class ;
+                 rdfs:subClassOf :Annotation ,
+                                 [ rdf:type owl:Restriction ;
+                                   owl:onProperty :includesObservation ;
+                                   owl:allValuesFrom :ScoreObservation
+                                 ] ,
+                                 [ rdf:type owl:Restriction ;
+                                   owl:onProperty :includesObservation ;
+                                   owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                   owl:onClass :ScoreObservation
+                                 ] ;
+                 rdfs:label "Score Annotation"@en .
+
+
+###  http://purl.org/andreapoltronieri/music-annotation-pattern/ScoreObservation
+:ScoreObservation rdf:type owl:Class ;
+                  rdfs:subClassOf :Observation ,
+                                  [ rdf:type owl:Restriction ;
+                                    owl:onProperty :annotationValidFrom ;
+                                    owl:allValuesFrom :MetricalTime
+                                  ] ,
+                                  [ rdf:type owl:Restriction ;
+                                    owl:onProperty :isObservationOf ;
+                                    owl:allValuesFrom :ScoreAnnotation
+                                  ] ;
+                  rdfs:comment "A observation defined on a symbolic notation or on a music score, i.e. described from a temporal point of view using references to symbolic elements defined by the notation itself."@en ;
+                  rdfs:label "JAMS Score Observation"@en .
+
+
+###  Generated by the OWL API (version 4.5.9.2019-02-01T07:24:44Z) https://github.com/owlcs/owlapi
