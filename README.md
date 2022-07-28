@@ -17,7 +17,7 @@ The Competency Questions (CQs) used to model the pattern are as follows:
 | **CQ2**  | What is the time frame within the musical object addressed by an annotation?                                               |
 | **CQ3**  | What is its start time (i.e. the starting time of the time frame)?                                                         |
 | **CQ4**  | Which are the observations included in an annotation?                                                                      |
-| **CQ5**  | For a specific observation, what is the starting point of its addressed time frame, within its reference musical object? ! |
+| **CQ5**  | For a specific observation, what is the starting point of its addressed time frame, within its reference musical object?   |
 | **CQ6**  | For a specific observation, what is its addressed time frame, within the musical object?                                   |
 | **CQ7**  | What is the value of an observation?                                                                                       |
 | **CQ8**  | Who/what is the annotator of an annotation/observation, and what is its type?                                              |
