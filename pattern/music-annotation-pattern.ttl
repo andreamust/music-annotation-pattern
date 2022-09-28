@@ -259,7 +259,8 @@ terms:license rdf:type owl:AnnotationProperty .
 
 
 ###  http://purl.org/andreapoltronieri/music-annotation-pattern/hasDurationValue
-:hasDurationValue rdf:type owl:DatatypeProperty ;
+:hasDurationValue rdf:type owl:DatatypeProperty ,
+                           owl:FunctionalProperty ;
                   rdfs:domain :MusicTimeDuration ;
                   rdfs:range rdfs:Literal ;
                   rdfs:label "Has Duration Value"@en .
@@ -329,7 +330,7 @@ terms:license rdf:type owl:AnnotationProperty .
                       rdfs:subClassOf :MusicAnnotation ,
                                       [ rdf:type owl:Restriction ;
                                         owl:onProperty :includesMusicObservation ;
-                                        owl:allValuesFrom :AudioMusicObservation
+                                        owl:someValuesFrom :AudioMusicObservation
                                       ] ,
                                       [ rdf:type owl:Restriction ;
                                         owl:onProperty :includesMusicObservation ;
@@ -585,7 +586,7 @@ terms:license rdf:type owl:AnnotationProperty .
                       rdfs:subClassOf :MusicAnnotation ,
                                       [ rdf:type owl:Restriction ;
                                         owl:onProperty :includesMusicObservation ;
-                                        owl:allValuesFrom :ScoreMusicObservation
+                                        owl:someValuesFrom :ScoreMusicObservation
                                       ] ,
                                       [ rdf:type owl:Restriction ;
                                         owl:onProperty :includesMusicObservation ;

@@ -363,6 +363,7 @@
     <!-- http://purl.org/andreapoltronieri/music-annotation-pattern/hasDurationValue -->
 
     <owl:DatatypeProperty rdf:about="http://purl.org/andreapoltronieri/music-annotation-pattern/hasDurationValue">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
         <rdfs:domain rdf:resource="http://purl.org/andreapoltronieri/music-annotation-pattern/MusicTimeDuration"/>
         <rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Literal"/>
         <rdfs:label xml:lang="en">Has Duration Value</rdfs:label>
@@ -461,7 +462,7 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://purl.org/andreapoltronieri/music-annotation-pattern/includesMusicObservation"/>
-                <owl:allValuesFrom rdf:resource="http://purl.org/andreapoltronieri/music-annotation-pattern/AudioMusicObservation"/>
+                <owl:someValuesFrom rdf:resource="http://purl.org/andreapoltronieri/music-annotation-pattern/AudioMusicObservation"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -822,7 +823,7 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://purl.org/andreapoltronieri/music-annotation-pattern/includesMusicObservation"/>
-                <owl:allValuesFrom rdf:resource="http://purl.org/andreapoltronieri/music-annotation-pattern/ScoreMusicObservation"/>
+                <owl:someValuesFrom rdf:resource="http://purl.org/andreapoltronieri/music-annotation-pattern/ScoreMusicObservation"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>

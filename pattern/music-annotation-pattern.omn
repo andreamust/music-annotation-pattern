@@ -1,0 +1,745 @@
+Prefix: : <http://purl.org/andreapoltronieri/music-annotation-pattern/>
+Prefix: dc: <http://purl.org/dc/elements/1.1/>
+Prefix: ex: <https://example.org/>
+Prefix: owl: <http://www.w3.org/2002/07/owl#>
+Prefix: rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+Prefix: rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+Prefix: terms: <http://purl.org/dc/terms/>
+Prefix: xml: <http://www.w3.org/XML/1998/namespace>
+Prefix: xsd: <http://www.w3.org/2001/XMLSchema#>
+
+
+
+Ontology: <http://purl.org/andreapoltronieri/music-annotation-pattern/>
+<http://purl.org/andreapoltronieri/music-annotation-pattern/0.1/>
+
+Annotations: 
+    dc:creator "Andrea Poltronieri"@en,
+    dc:creator "Jacopo de Berardinis"@en,
+    dc:creator "Valentina Presutti"@en,
+    dc:license <https://creativecommons.org/licenses/by-sa/4.0/>,
+    terms:license <https://creativecommons.org/licenses/by-sa/4.0/>,
+    rdfs:comment "An Ontology Design Pattern (ODP) for modelling differnt types of musical annotation"@en,
+    rdfs:label "Music Annotation Pattern"@en,
+    owl:versionInfo "1.0"@en
+
+AnnotationProperty: dc:creator
+
+    
+AnnotationProperty: dc:license
+
+    
+AnnotationProperty: dc:title
+
+    
+AnnotationProperty: owl:versionInfo
+
+    
+AnnotationProperty: rdfs:comment
+
+    
+AnnotationProperty: rdfs:label
+
+    
+AnnotationProperty: terms:license
+
+    
+Datatype: rdf:PlainLiteral
+
+    
+Datatype: rdfs:Literal
+
+    
+Datatype: xsd:float
+
+    
+Datatype: xsd:string
+
+    
+ObjectProperty: hasAnnotator
+
+    Annotations: 
+        rdfs:comment "Links a annotation to the Annotator the annotated the file ."@en,
+        rdfs:label "Has Annotator"@en
+    
+    DisjointWith: 
+        hasAnnotatorType,
+        hasMusicAnnotation,
+        includesMusicObservation,
+        isAnnotatorOf,
+        isAnnotatorTypeOf,
+        isMusicAnnotationOf,
+        isMusicObservationOf
+    
+    SubPropertyChain: 
+        isAnnotatorOf o includesMusicObservation
+    
+    Domain: 
+        MusicAnnotation
+    
+    Range: 
+        Annotator
+    
+    InverseOf: 
+        isAnnotatorOf
+    
+    
+ObjectProperty: hasAnnotatorType
+
+    Annotations: 
+        rdfs:comment "Links the Annotator class to its Annotator Type, describing how the Annotations were generated."@en,
+        rdfs:label "Has Annotator Type"@en
+    
+    DisjointWith: 
+        hasAnnotator,
+        hasMusicAnnotation,
+        includesMusicObservation,
+        isAnnotatorOf,
+        isAnnotatorTypeOf,
+        isMusicAnnotationOf,
+        isMusicObservationOf
+    
+    Domain: 
+        Annotator
+    
+    Range: 
+        AnnotatorType
+    
+    InverseOf: 
+        isAnnotatorTypeOf
+    
+    
+ObjectProperty: hasMusicAnnotation
+
+    Annotations: 
+        rdfs:comment "Relates a Score or a Recording to the annotation describing the track."@en,
+        rdfs:label "Has Annotation"@en
+    
+    DisjointWith: 
+        hasAnnotator,
+        hasAnnotatorType,
+        includesMusicObservation,
+        isAnnotatorOf,
+        isAnnotatorTypeOf,
+        isMusicAnnotationOf,
+        isMusicObservationOf
+    
+    Characteristics: 
+        InverseFunctional
+    
+    Domain: 
+        MusicalObject
+    
+    Range: 
+        MusicAnnotation
+    
+    InverseOf: 
+        isMusicAnnotationOf
+    
+    
+ObjectProperty: hasMusicTimeDuration
+
+    Annotations: 
+        rdfs:label "Has Music Time Duration"@en
+    
+    Domain: 
+        MusicTimeInterval
+    
+    Range: 
+        MusicTimeDuration
+    
+    InverseOf: 
+        isMusicTimeDurationOf
+    
+    
+ObjectProperty: hasMusicTimeIndex
+
+    Annotations: 
+        rdfs:label "Has Music Time Index"@en
+    
+    Domain: 
+        MusicTimeInterval
+    
+    Range: 
+        MusicTimeIndex
+    
+    InverseOf: 
+        isMusicTimeIndexOf
+    
+    
+ObjectProperty: hasMusicTimeIndexComponent
+
+    Annotations: 
+        rdfs:label "Has Music Time Index Component"@en
+    
+    Domain: 
+        MusicTimeIndex
+    
+    Range: 
+        MusicTimeIndexComponent
+    
+    
+ObjectProperty: hasMusicTimeInterval
+
+    Annotations: 
+        rdfs:label "Has Music Time Interval"@en
+    
+    Domain: 
+        MusicAnnotation or MusicObservation
+    
+    Range: 
+        MusicTimeInterval
+    
+    InverseOf: 
+        isMusicTimeIntervalOf
+    
+    
+ObjectProperty: hasMusicTimeValueType
+
+    Annotations: 
+        rdfs:label "Has Music Time Value Type"@en
+    
+    Domain: 
+        MusicTimeDuration or MusicTimeIndexComponent
+    
+    Range: 
+        MusicTimeValueType
+    
+    
+ObjectProperty: hasValue
+
+    Annotations: 
+        rdfs:comment "It links an Observation to its ObservationValue."@en,
+        rdfs:label "Has Value"@en
+    
+    Characteristics: 
+        InverseFunctional
+    
+    Domain: 
+        MusicObservation
+    
+    Range: 
+        MusicObservationValue
+    
+    InverseOf: 
+        isValueOf
+    
+    
+ObjectProperty: includesMusicObservation
+
+    Annotations: 
+        rdfs:comment "Links a Annotation to the Onservation(s) it contains."@en,
+        rdfs:label "Includes Observation"@en
+    
+    DisjointWith: 
+        hasAnnotator,
+        hasAnnotatorType,
+        hasMusicAnnotation,
+        isAnnotatorOf,
+        isAnnotatorTypeOf,
+        isMusicAnnotationOf,
+        isMusicObservationOf
+    
+    Characteristics: 
+        InverseFunctional
+    
+    Domain: 
+        MusicAnnotation
+    
+    Range: 
+        MusicObservation
+    
+    InverseOf: 
+        isMusicObservationOf
+    
+    
+ObjectProperty: isAnnotatorOf
+
+    Annotations: 
+        rdfs:comment "Inverse of hasAnnotator. Links the Annotator to the Annotation annotated by such annotator."@en,
+        rdfs:label "Is Annotator Of"@en
+    
+    DisjointWith: 
+        hasAnnotator,
+        hasAnnotatorType,
+        hasMusicAnnotation,
+        includesMusicObservation,
+        isAnnotatorTypeOf,
+        isMusicAnnotationOf,
+        isMusicObservationOf
+    
+    Domain: 
+        Annotator
+    
+    Range: 
+        MusicAnnotation
+    
+    InverseOf: 
+        hasAnnotator
+    
+    
+ObjectProperty: isAnnotatorTypeOf
+
+    Annotations: 
+        rdfs:comment "Inverse of hasAnnotatorType. Links the Annotator Type to the Annotator class."@en,
+        rdfs:label "Is Annotator Type Of"@en
+    
+    DisjointWith: 
+        hasAnnotator,
+        hasAnnotatorType,
+        hasMusicAnnotation,
+        includesMusicObservation,
+        isAnnotatorOf,
+        isMusicAnnotationOf,
+        isMusicObservationOf
+    
+    Domain: 
+        AnnotatorType
+    
+    Range: 
+        Annotator
+    
+    InverseOf: 
+        hasAnnotatorType
+    
+    
+ObjectProperty: isMusicAnnotationOf
+
+    Annotations: 
+        rdfs:comment "Inverse of hasAnnotation. It links the Annotation to either a Recording o a Score."@en,
+        rdfs:label "Is Annotation Of"@en
+    
+    DisjointWith: 
+        hasAnnotator,
+        hasAnnotatorType,
+        hasMusicAnnotation,
+        includesMusicObservation,
+        isAnnotatorOf,
+        isAnnotatorTypeOf,
+        isMusicObservationOf
+    
+    Characteristics: 
+        Functional
+    
+    Domain: 
+        MusicAnnotation
+    
+    Range: 
+        MusicalObject
+    
+    InverseOf: 
+        hasMusicAnnotation
+    
+    
+ObjectProperty: isMusicObservationOf
+
+    Annotations: 
+        rdfs:comment "Inverse of includesObservation. Links a  Observation to the Annotation to which it belongs."@en,
+        rdfs:label "Is Observation Of"@en
+    
+    DisjointWith: 
+        hasAnnotator,
+        hasAnnotatorType,
+        hasMusicAnnotation,
+        includesMusicObservation,
+        isAnnotatorOf,
+        isAnnotatorTypeOf,
+        isMusicAnnotationOf
+    
+    Characteristics: 
+        Functional
+    
+    Domain: 
+        MusicObservation
+    
+    Range: 
+        MusicAnnotation
+    
+    InverseOf: 
+        includesMusicObservation
+    
+    
+ObjectProperty: isMusicTimeDurationOf
+
+    Annotations: 
+        rdfs:label "Is Music Time Duration Of"@en
+    
+    Domain: 
+        MusicTimeDuration
+    
+    Range: 
+        MusicTimeInterval
+    
+    InverseOf: 
+        hasMusicTimeDuration
+    
+    
+ObjectProperty: isMusicTimeIndexComponentOf
+
+    Annotations: 
+        rdfs:label "Is Music Time Index Component Of"@en
+    
+    Domain: 
+        MusicTimeIndexComponent
+    
+    Range: 
+        MusicTimeIndex
+    
+    
+ObjectProperty: isMusicTimeIndexOf
+
+    Annotations: 
+        rdfs:label "Is Music Time Index Of"@en
+    
+    Domain: 
+        MusicTimeIndex
+    
+    Range: 
+        MusicTimeInterval
+    
+    InverseOf: 
+        hasMusicTimeIndex
+    
+    
+ObjectProperty: isMusicTimeIntervalOf
+
+    Annotations: 
+        rdfs:label "Is Music Time Interval Of"@en
+    
+    Domain: 
+        MusicTimeInterval
+    
+    Range: 
+        MusicAnnotation or MusicObservation
+    
+    InverseOf: 
+        hasMusicTimeInterval
+    
+    
+ObjectProperty: isValueOf
+
+    Annotations: 
+        rdfs:comment "Inverse of hasValue. It relates an ObservationValue to the belonging Observation."@en,
+        rdfs:label "Is Value Of"@en
+    
+    Characteristics: 
+        Functional
+    
+    Domain: 
+        MusicObservationValue
+    
+    Range: 
+        MusicObservation
+    
+    InverseOf: 
+        hasValue
+    
+    
+DataProperty: hasConfidence
+
+    Annotations: 
+        rdfs:comment "The confidence of an annotation/observation, expressed with a floating number from 0 to 1."@en,
+        rdfs:label "Has Confidence"@en
+    
+    Characteristics: 
+        Functional
+    
+    Domain: 
+        MusicObservation
+    
+    Range: 
+        xsd:float
+    
+    DisjointWith: 
+        hasName
+    
+    
+DataProperty: hasDurationValue
+
+    Annotations: 
+        rdfs:label "Has Duration Value"@en
+    
+    Characteristics: 
+        Functional
+    
+    Domain: 
+        MusicTimeDuration
+    
+    Range: 
+        rdfs:Literal
+    
+    
+DataProperty: hasName
+
+    Annotations: 
+        rdfs:comment "The name of an annotator, which can be either human, artificial (e.g. the name of a software) or describing a group of people (e.g. the name of a crowdsourcing service/event)."@en,
+        rdfs:label "Has Name"@en
+    
+    Domain: 
+        Annotator
+    
+    Range: 
+        xsd:string
+    
+    DisjointWith: 
+        hasConfidence
+    
+    
+DataProperty: hasTimeValue
+
+    Annotations: 
+        rdfs:label "Has Time Value"@en
+    
+    Characteristics: 
+        Functional
+    
+    Domain: 
+        MusicTimeIndexComponent
+    
+    Range: 
+        rdfs:Literal
+    
+    
+Class: Annotator
+
+    Annotations: 
+        rdfs:comment "The annotator of a annotation, whether understood as a physical person or as a machine that has performed an automatic transcription."@en,
+        rdfs:label "Annotator"@en
+    
+    SubClassOf: 
+        hasAnnotatorType only AnnotatorType,
+        hasName only xsd:string
+    
+    DisjointWith: 
+        AnnotatorType, MusicAnnotation, MusicObservation, MusicTimeDuration, MusicTimeIndex, MusicTimeIndexComponent, MusicTimeInterval, MusicTimeValueType
+    
+    
+Class: AnnotatorType
+
+    Annotations: 
+        rdfs:comment "The type of annotator of an annotation, whether human or the result of an automatic or crowdsourced annotation."@en,
+        rdfs:label "Annotator Type"@en
+    
+    SubClassOf: 
+        isAnnotatorOf only Annotator
+    
+    DisjointWith: 
+        Annotator, MusicAnnotation, MusicObservation, MusicTimeDuration, MusicTimeIndex, MusicTimeIndexComponent, MusicTimeInterval, MusicTimeValueType
+    
+    
+Class: AudioMusicAnnotation
+
+    Annotations: 
+        rdfs:comment "An annotation extracted from audio."@en,
+        rdfs:label "Audio Annotation"@en
+    
+    SubClassOf: 
+        MusicAnnotation,
+        includesMusicObservation some AudioMusicObservation,
+        includesMusicObservation min 1 AudioMusicObservation
+    
+    
+Class: AudioMusicObservation
+
+    Annotations: 
+        rdfs:comment "A observation defined on the audio signal, i.e. described from a temporal point of view using real time, usually expressed in seconds."@en,
+        rdfs:label "Audio Observation"@en
+    
+    SubClassOf: 
+        MusicObservation,
+        isMusicObservationOf only AudioMusicAnnotation
+    
+    DisjointWith: 
+        ScoreMusicObservation
+    
+    
+Class: MusicAnnotation
+
+    Annotations: 
+        rdfs:comment "A group of observations that share the same type of annotation (e.g. score or audio) and the same syntax with which the annotation is expressed."@en,
+        rdfs:label "Annotation"@en
+    
+    SubClassOf: 
+        hasMusicTimeInterval some MusicTimeInterval,
+        hasAnnotator only Annotator,
+        includesMusicObservation only MusicObservation,
+        isMusicAnnotationOf only MusicalObject,
+        includesMusicObservation min 1 MusicObservation,
+        hasMusicTimeInterval exactly 1 MusicTimeInterval,
+        isMusicAnnotationOf exactly 1 MusicalObject
+    
+    DisjointWith: 
+        Annotator, AnnotatorType, MusicObservation, MusicObservationValue, MusicTimeDuration, MusicTimeIndex, MusicTimeIndexComponent, MusicTimeInterval, MusicTimeValueType
+    
+    
+Class: MusicObservation
+
+    Annotations: 
+        rdfs:comment "An observation of the annotation, understood as an event defined in time (both real and symbolic) that has a value (e.g. a specific agreement) and a precise duration."@en,
+        rdfs:label "JAMS Observation"@en
+    
+    SubClassOf: 
+        hasMusicTimeInterval some MusicTimeInterval,
+        hasValue only MusicObservationValue,
+        isMusicObservationOf only MusicAnnotation,
+        hasMusicTimeInterval exactly 1 MusicTimeInterval,
+        hasValue exactly 1 MusicObservationValue,
+        isMusicObservationOf exactly 1 MusicAnnotation,
+        hasConfidence only xsd:float,
+        hasConfidence exactly 1 xsd:float
+    
+    DisjointWith: 
+        Annotator, AnnotatorType, MusicAnnotation, MusicObservationValue, MusicTimeDuration, MusicTimeIndex, MusicTimeIndexComponent, MusicTimeInterval, MusicTimeValueType
+    
+    
+Class: MusicObservationValue
+
+    Annotations: 
+        rdfs:comment "The value of an Observation."@en,
+        rdfs:label "Chord"@en
+    
+    SubClassOf: 
+        isValueOf only MusicObservation,
+        isValueOf min 1 MusicObservation
+    
+    DisjointWith: 
+        MusicAnnotation, MusicObservation, MusicTimeDuration, MusicTimeIndex, MusicTimeIndexComponent, MusicTimeInterval, MusicTimeValueType
+    
+    
+Class: MusicTimeDuration
+
+    Annotations: 
+        rdfs:label "Music Time Duration"@en
+    
+    SubClassOf: 
+        hasMusicTimeValueType only MusicTimeValueType,
+        hasMusicTimeValueType exactly 1 MusicTimeValueType,
+        hasDurationValue only rdfs:Literal,
+        hasDurationValue exactly 1 rdfs:Literal
+    
+    DisjointWith: 
+        Annotator, AnnotatorType, MusicAnnotation, MusicObservation, MusicObservationValue, MusicTimeIndex, MusicTimeIndexComponent, MusicTimeInterval, MusicTimeValueType, MusicalObject
+    
+    
+Class: MusicTimeIndex
+
+    Annotations: 
+        rdfs:label "Music Time Index"@en
+    
+    SubClassOf: 
+        hasMusicTimeIndexComponent only MusicTimeIndexComponent,
+        hasMusicTimeIndexComponent min 1 MusicTimeIndexComponent
+    
+    DisjointWith: 
+        Annotator, AnnotatorType, MusicAnnotation, MusicObservation, MusicObservationValue, MusicTimeDuration, MusicTimeIndexComponent, MusicTimeInterval, MusicTimeValueType, MusicalObject
+    
+    
+Class: MusicTimeIndexComponent
+
+    Annotations: 
+        rdfs:label "Music TIme Index Component"@en
+    
+    SubClassOf: 
+        hasMusicTimeValueType only MusicTimeValueType,
+        hasMusicTimeValueType exactly 1 MusicTimeValueType,
+        hasTimeValue only rdfs:Literal,
+        hasTimeValue exactly 1 rdfs:Literal
+    
+    DisjointWith: 
+        Annotator, AnnotatorType, MusicAnnotation, MusicObservation, MusicObservationValue, MusicTimeDuration, MusicTimeIndex, MusicTimeInterval, MusicTimeValueType, MusicalObject
+    
+    
+Class: MusicTimeInterval
+
+    Annotations: 
+        rdfs:label "Music Time Interval"@en
+    
+    SubClassOf: 
+        hasMusicTimeDuration only MusicTimeDuration,
+        hasMusicTimeIndex only MusicTimeIndex,
+        hasMusicTimeDuration exactly 1 MusicTimeDuration,
+        hasMusicTimeIndex exactly 1 MusicTimeIndex
+    
+    DisjointWith: 
+        Annotator, AnnotatorType, MusicAnnotation, MusicObservation, MusicObservationValue, MusicTimeDuration, MusicTimeIndex, MusicTimeIndexComponent, MusicTimeValueType, MusicalObject
+    
+    
+Class: MusicTimeValueType
+
+    Annotations: 
+        rdfs:label "Music Time Value Type"@en
+    
+    DisjointWith: 
+        Annotator, AnnotatorType, MusicAnnotation, MusicObservation, MusicObservationValue, MusicTimeDuration, MusicTimeIndex, MusicTimeIndexComponent, MusicTimeInterval, MusicalObject
+    
+    
+Class: MusicalObject
+
+    Annotations: 
+        rdfs:comment "The source of the annotation. For musical objects, in this context, we refer to a concept generalising over audio tracks and scores."@en,
+        rdfs:label "Musical Object"@en
+    
+    SubClassOf: 
+        hasMusicAnnotation only MusicAnnotation,
+        hasMusicAnnotation min 1 MusicAnnotation
+    
+    DisjointWith: 
+        MusicTimeDuration, MusicTimeIndex, MusicTimeIndexComponent, MusicTimeInterval, MusicTimeValueType
+    
+    
+Class: ScoreMusicAnnotation
+
+    Annotations: 
+        rdfs:comment "An annotation extracted from a symbolic music representation."@en,
+        rdfs:label "Score Annotation"@en
+    
+    SubClassOf: 
+        MusicAnnotation,
+        includesMusicObservation some ScoreMusicObservation,
+        includesMusicObservation min 1 ScoreMusicObservation
+    
+    
+Class: ScoreMusicObservation
+
+    Annotations: 
+        rdfs:comment "A observation defined on a symbolic notation or on a music score, i.e. described from a temporal point of view using references to symbolic elements defined by the notation itself."@en,
+        rdfs:label "Score Observation"@en
+    
+    SubClassOf: 
+        MusicObservation,
+        isMusicObservationOf only ScoreMusicAnnotation
+    
+    DisjointWith: 
+        AudioMusicObservation
+    
+    
+Individual: Beat
+
+    Types: 
+        MusicTimeValueType
+    
+    
+Individual: Measure
+
+    Types: 
+        MusicTimeValueType
+    
+    
+Individual: Milliseconds
+
+    Types: 
+        MusicTimeValueType
+    
+    
+Individual: Minutes
+
+    Types: 
+        MusicTimeValueType
+    
+    
+Individual: Seconds
+
+    Types: 
+        MusicTimeValueType
+    
+    
