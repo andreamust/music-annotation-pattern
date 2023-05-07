@@ -62,21 +62,6 @@ ObjectProperty: hasAnnotator
         rdfs:comment "Links a annotation to the Annotator the annotated the file ."@en,
         rdfs:label "Has Annotator"@en
     
-    DisjointWith: 
-        hasAnnotatorType,
-        hasMusicAnnotation,
-        includesMusicObservation,
-        isAnnotatorOf,
-        isAnnotatorTypeOf,
-        isMusicAnnotationOf,
-        isMusicObservationOf
-    
-    SubPropertyChain: 
-        isAnnotatorOf o includesMusicObservation
-    
-    Domain: 
-        MusicAnnotation
-    
     Range: 
         Annotator
     
@@ -91,10 +76,8 @@ ObjectProperty: hasAnnotatorType
         rdfs:label "Has Annotator Type"@en
     
     DisjointWith: 
-        hasAnnotator,
         hasMusicAnnotation,
         includesMusicObservation,
-        isAnnotatorOf,
         isAnnotatorTypeOf,
         isMusicAnnotationOf,
         isMusicObservationOf
@@ -116,10 +99,8 @@ ObjectProperty: hasMusicAnnotation
         rdfs:label "Has Annotation"@en
     
     DisjointWith: 
-        hasAnnotator,
         hasAnnotatorType,
         includesMusicObservation,
-        isAnnotatorOf,
         isAnnotatorTypeOf,
         isMusicAnnotationOf,
         isMusicObservationOf
@@ -232,10 +213,8 @@ ObjectProperty: includesMusicObservation
         rdfs:label "Includes Observation"@en
     
     DisjointWith: 
-        hasAnnotator,
         hasAnnotatorType,
         hasMusicAnnotation,
-        isAnnotatorOf,
         isAnnotatorTypeOf,
         isMusicAnnotationOf,
         isMusicObservationOf
@@ -259,20 +238,11 @@ ObjectProperty: isAnnotatorOf
         rdfs:comment "Inverse of hasAnnotator. Links the Annotator to the Annotation annotated by such annotator."@en,
         rdfs:label "Is Annotator Of"@en
     
-    DisjointWith: 
-        hasAnnotator,
-        hasAnnotatorType,
-        hasMusicAnnotation,
-        includesMusicObservation,
-        isAnnotatorTypeOf,
-        isMusicAnnotationOf,
-        isMusicObservationOf
+    SubPropertyChain: 
+        isAnnotatorOf o includesMusicObservation
     
     Domain: 
         Annotator
-    
-    Range: 
-        MusicAnnotation
     
     InverseOf: 
         hasAnnotator
@@ -285,11 +255,9 @@ ObjectProperty: isAnnotatorTypeOf
         rdfs:label "Is Annotator Type Of"@en
     
     DisjointWith: 
-        hasAnnotator,
         hasAnnotatorType,
         hasMusicAnnotation,
         includesMusicObservation,
-        isAnnotatorOf,
         isMusicAnnotationOf,
         isMusicObservationOf
     
@@ -310,11 +278,9 @@ ObjectProperty: isMusicAnnotationOf
         rdfs:label "Is Annotation Of"@en
     
     DisjointWith: 
-        hasAnnotator,
         hasAnnotatorType,
         hasMusicAnnotation,
         includesMusicObservation,
-        isAnnotatorOf,
         isAnnotatorTypeOf,
         isMusicObservationOf
     
@@ -338,11 +304,9 @@ ObjectProperty: isMusicObservationOf
         rdfs:label "Is Observation Of"@en
     
     DisjointWith: 
-        hasAnnotator,
         hasAnnotatorType,
         hasMusicAnnotation,
         includesMusicObservation,
-        isAnnotatorOf,
         isAnnotatorTypeOf,
         isMusicAnnotationOf
     

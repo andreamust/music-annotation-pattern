@@ -47,18 +47,7 @@ terms:license rdf:type owl:AnnotationProperty .
 ###  http://purl.org/andreapoltronieri/music-annotation-pattern/hasAnnotator
 :hasAnnotator rdf:type owl:ObjectProperty ;
               owl:inverseOf :isAnnotatorOf ;
-              rdfs:domain :MusicAnnotation ;
               rdfs:range :Annotator ;
-              owl:propertyDisjointWith :hasAnnotatorType ,
-                                       :hasMusicAnnotation ,
-                                       :includesMusicObservation ,
-                                       :isAnnotatorOf ,
-                                       :isAnnotatorTypeOf ,
-                                       :isMusicAnnotationOf ,
-                                       :isMusicObservationOf ;
-              owl:propertyChainAxiom ( :isAnnotatorOf
-                                       :includesMusicObservation
-                                     ) ;
               rdfs:comment "Links a annotation to the Annotator the annotated the file ."@en ;
               rdfs:label "Has Annotator"@en .
 
@@ -70,7 +59,6 @@ terms:license rdf:type owl:AnnotationProperty .
                   rdfs:range :AnnotatorType ;
                   owl:propertyDisjointWith :hasMusicAnnotation ,
                                            :includesMusicObservation ,
-                                           :isAnnotatorOf ,
                                            :isAnnotatorTypeOf ,
                                            :isMusicAnnotationOf ,
                                            :isMusicObservationOf ;
@@ -85,7 +73,6 @@ terms:license rdf:type owl:AnnotationProperty .
                     rdfs:domain :MusicalObject ;
                     rdfs:range :MusicAnnotation ;
                     owl:propertyDisjointWith :includesMusicObservation ,
-                                             :isAnnotatorOf ,
                                              :isAnnotatorTypeOf ,
                                              :isMusicAnnotationOf ,
                                              :isMusicObservationOf ;
@@ -155,8 +142,7 @@ terms:license rdf:type owl:AnnotationProperty .
                           rdf:type owl:InverseFunctionalProperty ;
                           rdfs:domain :MusicAnnotation ;
                           rdfs:range :MusicObservation ;
-                          owl:propertyDisjointWith :isAnnotatorOf ,
-                                                   :isAnnotatorTypeOf ,
+                          owl:propertyDisjointWith :isAnnotatorTypeOf ,
                                                    :isMusicAnnotationOf ,
                                                    :isMusicObservationOf ;
                           rdfs:comment "Links a Annotation to the Onservation(s) it contains."@en ;
@@ -166,10 +152,9 @@ terms:license rdf:type owl:AnnotationProperty .
 ###  http://purl.org/andreapoltronieri/music-annotation-pattern/isAnnotatorOf
 :isAnnotatorOf rdf:type owl:ObjectProperty ;
                rdfs:domain :Annotator ;
-               rdfs:range :MusicAnnotation ;
-               owl:propertyDisjointWith :isAnnotatorTypeOf ,
-                                        :isMusicAnnotationOf ,
-                                        :isMusicObservationOf ;
+               owl:propertyChainAxiom ( :isAnnotatorOf
+                                        :includesMusicObservation
+                                      ) ;
                rdfs:comment "Inverse of hasAnnotator. Links the Annotator to the Annotation annotated by such annotator."@en ;
                rdfs:label "Is Annotator Of"@en .
 

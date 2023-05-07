@@ -75,17 +75,6 @@
         <owl:inverseOf rdf:resource="http://purl.org/andreapoltronieri/music-annotation-pattern/isAnnotatorOf"/>
         <rdfs:domain rdf:resource="http://purl.org/andreapoltronieri/music-annotation-pattern/MusicAnnotation"/>
         <rdfs:range rdf:resource="http://purl.org/andreapoltronieri/music-annotation-pattern/Annotator"/>
-        <owl:propertyDisjointWith rdf:resource="http://purl.org/andreapoltronieri/music-annotation-pattern/hasAnnotatorType"/>
-        <owl:propertyDisjointWith rdf:resource="http://purl.org/andreapoltronieri/music-annotation-pattern/hasMusicAnnotation"/>
-        <owl:propertyDisjointWith rdf:resource="http://purl.org/andreapoltronieri/music-annotation-pattern/includesMusicObservation"/>
-        <owl:propertyDisjointWith rdf:resource="http://purl.org/andreapoltronieri/music-annotation-pattern/isAnnotatorOf"/>
-        <owl:propertyDisjointWith rdf:resource="http://purl.org/andreapoltronieri/music-annotation-pattern/isAnnotatorTypeOf"/>
-        <owl:propertyDisjointWith rdf:resource="http://purl.org/andreapoltronieri/music-annotation-pattern/isMusicAnnotationOf"/>
-        <owl:propertyDisjointWith rdf:resource="http://purl.org/andreapoltronieri/music-annotation-pattern/isMusicObservationOf"/>
-        <owl:propertyChainAxiom rdf:parseType="Collection">
-            <rdf:Description rdf:about="http://purl.org/andreapoltronieri/music-annotation-pattern/isAnnotatorOf"/>
-            <rdf:Description rdf:about="http://purl.org/andreapoltronieri/music-annotation-pattern/includesMusicObservation"/>
-        </owl:propertyChainAxiom>
         <rdfs:comment xml:lang="en">Links a annotation to the Annotator the annotated the file .</rdfs:comment>
         <rdfs:label xml:lang="en">Has Annotator</rdfs:label>
     </owl:ObjectProperty>
@@ -100,7 +89,6 @@
         <rdfs:range rdf:resource="http://purl.org/andreapoltronieri/music-annotation-pattern/AnnotatorType"/>
         <owl:propertyDisjointWith rdf:resource="http://purl.org/andreapoltronieri/music-annotation-pattern/hasMusicAnnotation"/>
         <owl:propertyDisjointWith rdf:resource="http://purl.org/andreapoltronieri/music-annotation-pattern/includesMusicObservation"/>
-        <owl:propertyDisjointWith rdf:resource="http://purl.org/andreapoltronieri/music-annotation-pattern/isAnnotatorOf"/>
         <owl:propertyDisjointWith rdf:resource="http://purl.org/andreapoltronieri/music-annotation-pattern/isAnnotatorTypeOf"/>
         <owl:propertyDisjointWith rdf:resource="http://purl.org/andreapoltronieri/music-annotation-pattern/isMusicAnnotationOf"/>
         <owl:propertyDisjointWith rdf:resource="http://purl.org/andreapoltronieri/music-annotation-pattern/isMusicObservationOf"/>
@@ -118,7 +106,6 @@
         <rdfs:domain rdf:resource="http://purl.org/andreapoltronieri/music-annotation-pattern/MusicalObject"/>
         <rdfs:range rdf:resource="http://purl.org/andreapoltronieri/music-annotation-pattern/MusicAnnotation"/>
         <owl:propertyDisjointWith rdf:resource="http://purl.org/andreapoltronieri/music-annotation-pattern/includesMusicObservation"/>
-        <owl:propertyDisjointWith rdf:resource="http://purl.org/andreapoltronieri/music-annotation-pattern/isAnnotatorOf"/>
         <owl:propertyDisjointWith rdf:resource="http://purl.org/andreapoltronieri/music-annotation-pattern/isAnnotatorTypeOf"/>
         <owl:propertyDisjointWith rdf:resource="http://purl.org/andreapoltronieri/music-annotation-pattern/isMusicAnnotationOf"/>
         <owl:propertyDisjointWith rdf:resource="http://purl.org/andreapoltronieri/music-annotation-pattern/isMusicObservationOf"/>
@@ -215,7 +202,6 @@
         <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#InverseFunctionalProperty"/>
         <rdfs:domain rdf:resource="http://purl.org/andreapoltronieri/music-annotation-pattern/MusicAnnotation"/>
         <rdfs:range rdf:resource="http://purl.org/andreapoltronieri/music-annotation-pattern/MusicObservation"/>
-        <owl:propertyDisjointWith rdf:resource="http://purl.org/andreapoltronieri/music-annotation-pattern/isAnnotatorOf"/>
         <owl:propertyDisjointWith rdf:resource="http://purl.org/andreapoltronieri/music-annotation-pattern/isAnnotatorTypeOf"/>
         <owl:propertyDisjointWith rdf:resource="http://purl.org/andreapoltronieri/music-annotation-pattern/isMusicAnnotationOf"/>
         <owl:propertyDisjointWith rdf:resource="http://purl.org/andreapoltronieri/music-annotation-pattern/isMusicObservationOf"/>
@@ -230,9 +216,10 @@
     <owl:ObjectProperty rdf:about="http://purl.org/andreapoltronieri/music-annotation-pattern/isAnnotatorOf">
         <rdfs:domain rdf:resource="http://purl.org/andreapoltronieri/music-annotation-pattern/Annotator"/>
         <rdfs:range rdf:resource="http://purl.org/andreapoltronieri/music-annotation-pattern/MusicAnnotation"/>
-        <owl:propertyDisjointWith rdf:resource="http://purl.org/andreapoltronieri/music-annotation-pattern/isAnnotatorTypeOf"/>
-        <owl:propertyDisjointWith rdf:resource="http://purl.org/andreapoltronieri/music-annotation-pattern/isMusicAnnotationOf"/>
-        <owl:propertyDisjointWith rdf:resource="http://purl.org/andreapoltronieri/music-annotation-pattern/isMusicObservationOf"/>
+        <owl:propertyChainAxiom rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://purl.org/andreapoltronieri/music-annotation-pattern/isAnnotatorOf"/>
+            <rdf:Description rdf:about="http://purl.org/andreapoltronieri/music-annotation-pattern/includesMusicObservation"/>
+        </owl:propertyChainAxiom>
         <rdfs:comment xml:lang="en">Inverse of hasAnnotator. Links the Annotator to the Annotation annotated by such annotator.</rdfs:comment>
         <rdfs:label xml:lang="en">Is Annotator Of</rdfs:label>
     </owl:ObjectProperty>
